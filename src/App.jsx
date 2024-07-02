@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case "ADD_TO_CART":
       return [...state, action.product];
     case "REMOVE_FROM_CART":
-      return state.filter(product => product.id !== action.id);
+      return state.filter(product => product.id !== action.product.id);
     default:
       return state;
   }
@@ -31,20 +31,20 @@ function App() {
     dispatch({ type: "ADD_TO_CART", product });
   };
 
-  const removeFromCart = (id) => {
-    dispatch({ type: "REMOVE_FROM_CART", id });
+  const removeFromCart = (product) => {
+    dispatch({ type: "REMOVE_FROM_CART", product });
   };
 
   const toggleCart = (product) => {
     if (isProductInCart(product.id)) {
-      removeFromCart(product.id);
+      removeFromCart(product);
     } else {
       addToCart(product);
     }
   };
 
   useEffect(() => {
-    setTotal(state.reduce((acc, b) => acc + b.price, 0).toFixed(2));
+    setTotal(state.reduce((acc, product) => acc + parseFloat(product.price), 0).toFixed(2));
   }, [state]);
 
   const isProductInCart = (id) => {
@@ -52,18 +52,20 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+    <div className="App" style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
       <div>
         <h1>PRODUCTS</h1>
         <div className="products">
           {products.map(product =>
             <div className="product-card" key={product.id}>
               <img width={100} src={product.images[0]} alt="" />
-              <h3>{product.title}</h3>
+              <h3>{product.title.slice(0, 20)}</h3>
               <p>${product.price}</p>
-              <button onClick={() => addToCart(product)}>Add to cart</button>
-              <div onClick={() => toggleCart(product)} style={{ cursor: 'pointer', marginLeft: '10px', display: 'inline-block' }}>
-                {isProductInCart(product.id) ? <AiFillHeart color="red" /> : <AiOutlineHeart />}
+              <div className="btns" style={{ display: 'flex' }}>
+                <button onClick={() => addToCart(product)}>Add to cart</button>
+                <div onClick={() => toggleCart(product)} style={{ cursor: 'pointer', marginLeft: '10px', display: 'inline-block' }}>
+                  {isProductInCart(product.id) ? <AiFillHeart color="red" /> : <AiOutlineHeart />}
+                </div>
               </div>
             </div>
           )}
@@ -85,7 +87,7 @@ function App() {
               <img width={100} src={product.images[0]} alt="" />
               <h3>{product.title}</h3>
               <p>${product.price}</p>
-              <button onClick={() => removeFromCart(product.id)}>Remove from cart</button>
+              <button onClick={() => removeFromCart(product)}>Remove from cart</button>
               <div onClick={() => toggleCart(product)} style={{ cursor: 'pointer', marginLeft: '10px', display: 'inline-block' }}>
                 <AiFillHeart color="red" />
               </div>
