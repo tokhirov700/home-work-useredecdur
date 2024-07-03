@@ -57,6 +57,7 @@
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .product-card button:hover {
