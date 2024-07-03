@@ -64,7 +64,7 @@ function App() {
           {products.map(product =>
             <div className="product-card" key={product.id}>
               <img width={100} src={product.images[0]} alt="" />
-              <h3>{product.title.slice(0, 20)}</h3>
+              <h3>{product.title.slice(0, 15)}</h3>
               <p>${product.price}</p>
               <div className="btns" style={{ display: 'flex' }}>
                 <button onClick={() => addToCart(product)}>Add to cart</button>
@@ -90,7 +90,7 @@ function App() {
           {state.map(product =>
             <div className="product-card" key={product.id}>
               <img width={100} src={product.images[0]} alt="" />
-              <h3>{product.title}</h3>
+              <h3>{product.title.slice(0, 15)}</h3>
               <p>${product.price}</p>
               <button onClick={() => removeFromCart(product)}>Remove from cart</button>
               <div onClick={() => toggleCart(product)} style={{ cursor: 'pointer', marginLeft: '10px', display: 'inline-block' }}>

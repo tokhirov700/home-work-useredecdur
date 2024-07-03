@@ -6,7 +6,8 @@
 .products, .cart-products {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
+  margin-top: 30px;
 }
 .App {
   max-width: 1400px;
@@ -73,4 +74,42 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.cart-products img {
+  width: 100px;
+  height: 100px;
+}
+.cart-products p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.cart-products button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.cart-products button:hover {
+  background-color: #0056b3;
+}
+.cart-products div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+}
+.cart-products {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: center;
+  overflow: auto;
+  max-height: 300px;
+display: flex;
+flex-direction: column;
+  width: 300px;
 }
